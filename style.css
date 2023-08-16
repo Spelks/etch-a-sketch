@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Gill Sans Extrabold", sans-serif;
+    color: #333;
+    height: 100vh;
+    background-image: linear-gradient(rgb(123, 123, 246), lightblue);
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    padding: 10px 30px 10px 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.draw-section {
+    display: flex;
+    width: 480px;
+    flex-wrap: wrap;
+    background-image: radial-gradient(rgb(219, 217, 217), rgb(255, 255, 255));
+}
+
+.grid-item {
+    width: 30px;
+    height: 30px;
+}
+
+/* .grid-item:hover {
+    background-color: #333;
+} */
