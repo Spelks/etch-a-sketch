@@ -14,3 +14,13 @@ defaultPen.forEach((defaultPen)=>{
     })
 })
 
+const resetBtn = document.querySelector(".reset-btn");
+resetBtn.addEventListener("click", resetGrid);
+
+function resetGrid() {
+    const reset = document.querySelectorAll(".grid-item");
+    reset.forEach((reset)=> {
+        reset.style.cssText = "border: 1px solid #333; background-color: azure;";
+    })
+}
+

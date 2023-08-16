@@ -25,12 +25,24 @@ h1 {
     display: flex;
     width: 480px;
     flex-wrap: wrap;
-    background-image: radial-gradient(rgb(219, 217, 217), rgb(255, 255, 255));
+    background-color: azure;
 }
 
 .grid-item {
     width: 30px;
     height: 30px;
+}
+
+.reset {
+    display: flex;
+    justify-content: center;
+}
+
+.reset-btn {
+    padding: 10px 30px;
+    font-size: x-large;
+    border-radius: 20px;
+    border: 0px;
 }
 
 /* .grid-item:hover {
