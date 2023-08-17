@@ -28,9 +28,24 @@ h1 {
     background-color: azure;
 }
 
-.grid-item {
+/* .grid-item {
     width: 30px;
     height: 30px;
+} */
+
+.grid-small {
+    width: 30px;
+    height: 30px;
+}
+
+.grid-medium {
+    width: 15px;
+    height: 15px;
+}
+
+.grid-large {
+    width: 7.5px;
+    height: 7.5px;
 }
 
 .reset {

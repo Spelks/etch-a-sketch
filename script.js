@@ -4,8 +4,31 @@ function smallGrid() {
     const drawSection = document.querySelector(".draw-section");
     for (let i = 0; i < 256; i++) {
         const gridItem = document.createElement("div");
-        gridItem.classList.add("grid-item");
+        gridItem.classList.add("grid-item", "grid-small");
         gridItem.style.cssText = "border: 1px solid #333;";
+        drawSection.appendChild(gridItem);
+    }
+    penPlain()
+}
+
+//Function for 32*32 grid
+function mediumGrid() {
+    const drawSection = document.querySelector(".draw-section");
+    for (let i = 0; i < 1024; i++) {
+        const gridItem = document.createElement("div");
+        gridItem.classList.add("grid-item","grid-medium");
+        gridItem.style.cssText = "border: 1px solid red;";
+        drawSection.appendChild(gridItem);
+    }
+    penPlain()
+}
+
+function largeGrid() {
+    const drawSection = document.querySelector(".draw-section");
+    for (let i = 0; i < 64 * 64; i++) {
+        const gridItem = document.createElement("div");
+        gridItem.classList.add("grid-item","grid-large");
+        gridItem.style.cssText = "border: 1px solid green;";
         drawSection.appendChild(gridItem);
     }
     penPlain()
@@ -33,4 +56,6 @@ function resetGrid() {
 }
 
 smallGrid()
+// mediumGrid()
+// largeGrid()
 
