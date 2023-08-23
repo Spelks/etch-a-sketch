@@ -23,29 +23,10 @@ h1 {
 
 .draw-section {
     display: flex;
-    width: 480px;
+    width: 400px;
+    height: 400px;
     flex-wrap: wrap;
     background-color: azure;
-}
-
-/* .grid-item {
-    width: 30px;
-    height: 30px;
-} */
-
-.grid-small {
-    width: 30px;
-    height: 30px;
-}
-
-.grid-medium {
-    width: 15px;
-    height: 15px;
-}
-
-.grid-large {
-    width: 7.5px;
-    height: 7.5px;
 }
 
 .reset {
@@ -53,11 +34,12 @@ h1 {
     justify-content: center;
 }
 
-.reset-btn {
+button {
     padding: 10px 30px;
     font-size: x-large;
     border-radius: 20px;
     border: 0px;
+    margin: 0 10px;
 }
 
 /* .grid-item:hover {
