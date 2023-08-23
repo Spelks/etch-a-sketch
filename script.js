@@ -1,35 +1,12 @@
 
-//Function for 16*16 grid
-function smallGrid() {
+//Function to draw grid size based on input
+function drawGrid(num) {
     const drawSection = document.querySelector(".draw-section");
-    for (let i = 0; i < 256; i++) {
+    for (let i = 0; i < num * num; i++) {
         const gridItem = document.createElement("div");
-        gridItem.classList.add("grid-item", "grid-small");
-        gridItem.style.cssText = "border: 1px solid #333;";
+        gridItem.classList.add("grid-item");
         drawSection.appendChild(gridItem);
-    }
-    penPlain()
-}
-
-//Function for 32*32 grid
-function mediumGrid() {
-    const drawSection = document.querySelector(".draw-section");
-    for (let i = 0; i < 1024; i++) {
-        const gridItem = document.createElement("div");
-        gridItem.classList.add("grid-item","grid-medium");
-        gridItem.style.cssText = "border: 1px solid red;";
-        drawSection.appendChild(gridItem);
-    }
-    penPlain()
-}
-
-function largeGrid() {
-    const drawSection = document.querySelector(".draw-section");
-    for (let i = 0; i < 64 * 64; i++) {
-        const gridItem = document.createElement("div");
-        gridItem.classList.add("grid-item","grid-large");
-        gridItem.style.cssText = "border: 1px solid green;";
-        drawSection.appendChild(gridItem);
+        gridItem.style.cssText = `border: 1px solid #666; width: ${400 / num}px; height: ${400 / num}px;`;
     }
     penPlain()
 }
@@ -39,7 +16,7 @@ function penPlain() {
     const defaultPen = document.querySelectorAll(".grid-item");
     defaultPen.forEach((defaultPen)=>{
         defaultPen.addEventListener("mouseenter", ()=> {
-            defaultPen.style.cssText = "background-color: #333";
+            defaultPen.style.backgroundColor = "#333";
         })
     })
 }
@@ -51,11 +28,30 @@ resetBtn.addEventListener("click", resetGrid);
 function resetGrid() {
     const reset = document.querySelectorAll(".grid-item");
     reset.forEach((reset)=> {
-        reset.style.cssText = "border: 1px solid #333; background-color: azure;";
+        // reset.style.cssText = `border: 1px solid #333; background-color: azure;`;
+        reset.style.backgroundColor = "azure";
+        reset.style.border = "1px solid #666";
     })
 }
 
-smallGrid()
-// mediumGrid()
-// largeGrid()
+//Button to set the grid size
+gridBtn = document.querySelector(".grid-btn");
+gridBtn.addEventListener("click", ()=> {
+    removeGrid()
+    const num = prompt("Please pick a draw size between 16 and 70", "(e.g '16' will create a '16x16' grid)");
+    if (num >= 16 && num <= 70) {
+        // const gridItem = document.querySelector(".draw-section");
+        // gridItem.classList.add("grid-item");
+        // gridItem.style.cssText = `background-color: green;`
+        drawGrid(num);
+    } else {
+        alert("You need to pick between 16 and 70");
+    }
+});
+
+//Strips the grid from the container when selecting new dimensions
+function removeGrid() {
+    const removeSection = document.querySelector(".draw-section");
+    removeSection.textContent = "";
+}
 
