@@ -23,8 +23,8 @@ h1 {
 
 .draw-section {
     display: flex;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     flex-wrap: wrap;
     background-color: azure;
 }
