@@ -1,4 +1,3 @@
-
 //Function to draw grid size based on input
 function drawGrid(num) {
     const drawSection = document.querySelector(".draw-section");
@@ -6,17 +5,25 @@ function drawGrid(num) {
         const gridItem = document.createElement("div");
         gridItem.classList.add("grid-item");
         drawSection.appendChild(gridItem);
-        gridItem.style.cssText = `border: 1px solid #666; width: ${400 / num}px; height: ${400 / num}px;`;
+        gridItem.style.cssText = `border: 1px solid #666; flex-basis: ${100 / num}%;`;
     }
-    penPlain()
+    colorPicker();
 }
 
-//Default dark colored pen
-function penPlain() {
-    const defaultPen = document.querySelectorAll(".grid-item");
-    defaultPen.forEach((defaultPen)=>{
-        defaultPen.addEventListener("mouseenter", ()=> {
-            defaultPen.style.backgroundColor = "#333";
+//Pick pen color from pop up
+function colorPicker() {
+    const penColor = document.querySelectorAll(".grid-item");
+    const colorChoice = document.querySelector("#pen-color");
+    colorChoice.addEventListener("input", ()=> {
+        penColor.forEach((penColor)=>{
+            penColor.addEventListener("mouseenter", ()=> {
+                penColor.style.backgroundColor = colorChoice.value;
+            })
+        })
+    })
+    penColor.forEach((penColor)=>{
+        penColor.addEventListener("mouseenter", ()=> {
+            penColor.style.backgroundColor = colorChoice.value;
         })
     })
 }
@@ -38,14 +45,11 @@ function resetGrid() {
 gridBtn = document.querySelector(".grid-btn");
 gridBtn.addEventListener("click", ()=> {
     removeGrid()
-    const num = prompt("Please pick a draw size between 16 and 70", "(e.g '16' will create a '16x16' grid)");
-    if (num >= 16 && num <= 70) {
-        // const gridItem = document.querySelector(".draw-section");
-        // gridItem.classList.add("grid-item");
-        // gridItem.style.cssText = `background-color: green;`
+    const num = prompt("Please pick a draw size between 2 and 70", "(e.g '16' will create a '16x16' grid)");
+    if (num >= 2 && num <= 70) {
         drawGrid(num);
     } else {
-        alert("You need to pick between 16 and 70");
+        alert("You need to pick between 2 and 70");
     }
 });
 
@@ -54,4 +58,3 @@ function removeGrid() {
     const removeSection = document.querySelector(".draw-section");
     removeSection.textContent = "";
 }
-
