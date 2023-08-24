@@ -5,7 +5,7 @@ function drawGrid(num) {
         const gridItem = document.createElement("div");
         gridItem.classList.add("grid-item");
         drawSection.appendChild(gridItem);
-        gridItem.style.cssText = `border: 1px solid #666; flex-basis: ${100 / num}%;`;
+        gridItem.style.cssText = `border: 1px solid lightgrey; flex-basis: ${100 / num}%;`;
     }
     colorPicker();
 }
@@ -31,30 +31,34 @@ function colorPicker() {
 //Attach resetGrid function to button
 const resetBtn = document.querySelector(".reset-btn");
 resetBtn.addEventListener("click", resetGrid);
+
 //Reset the grid to default background color
 function resetGrid() {
     const reset = document.querySelectorAll(".grid-item");
     reset.forEach((reset)=> {
-        // reset.style.cssText = `border: 1px solid #333; background-color: azure;`;
         reset.style.backgroundColor = "azure";
-        reset.style.border = "1px solid #666";
     })
 }
 
-//Button to set the grid size
-gridBtn = document.querySelector(".grid-btn");
-gridBtn.addEventListener("click", ()=> {
+const slider = document.querySelector("#slider-range");
+const output = document.querySelector("#grid-size");
+
+output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
+
+
+//Applies new grid size and removes old one whenever slider moves
+slider.addEventListener("input", ()=> {
+    const gridSize = parseInt(slider.value);
+    output.innerText = `${slider.value} x ${slider.value}`;
     removeGrid()
-    const num = prompt("Please pick a draw size between 2 and 70", "(e.g '16' will create a '16x16' grid)");
-    if (num >= 2 && num <= 70) {
-        drawGrid(num);
-    } else {
-        alert("You need to pick between 2 and 70");
-    }
-});
+    drawGrid(gridSize);
+})
 
 //Strips the grid from the container when selecting new dimensions
 function removeGrid() {
     const removeSection = document.querySelector(".draw-section");
     removeSection.textContent = "";
 }
+
+//Set the initial grid
+drawGrid(parseInt(slider.value));
