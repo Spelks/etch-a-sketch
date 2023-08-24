@@ -19,6 +19,24 @@ h1 {
     padding: 10px 30px 10px 30px;
     display: flex;
     justify-content: center;
+    width: 900px;
+    margin: 0 auto;
+    background-color: rgb(213, 19, 19);
+    background-image: radial-gradient(rgb(255, 53, 53), rgb(178, 21, 21));
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.control-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color:azure;
+    border-radius: 100px;
+    margin-right: 20px;
 }
 
 .draw-section {
@@ -29,7 +47,7 @@ h1 {
     background-color: azure;
 }
 
-.reset {
+.reset-container {
     display: flex;
     justify-content: center;
 }
@@ -40,6 +58,10 @@ button {
     border-radius: 20px;
     border: 0px;
     margin: 0 10px;
+}
+
+.slider-container {
+    text-align: center;
 }
 
 /* .grid-item:hover {
