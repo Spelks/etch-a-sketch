@@ -14,16 +14,23 @@ function drawGrid(num) {
 function colorPicker() {
     const penColor = document.querySelectorAll(".grid-item");
     const colorChoice = document.querySelector("#pen-color");
-    colorChoice.addEventListener("input", ()=> {
-        penColor.forEach((penColor)=>{
-            penColor.addEventListener("mouseenter", ()=> {
-                penColor.style.backgroundColor = colorChoice.value;
-            })
+    let isDrawing = false;
+
+    penColor.forEach((penColor) => {
+        penColor.addEventListener("pointerdown", ()=> {
+            isDrawing = true;
         })
     })
-    penColor.forEach((penColor)=>{
-        penColor.addEventListener("mouseenter", ()=> {
-            penColor.style.backgroundColor = colorChoice.value;
+
+    document.addEventListener("pointerup", ()=> {
+        isDrawing = false;
+    })
+
+    penColor.forEach((penColor) => {
+        penColor.addEventListener("pointermove", ()=> {
+            if (isDrawing === true) {
+                penColor.style.backgroundColor = colorChoice.value;
+            }
         })
     })
 }
