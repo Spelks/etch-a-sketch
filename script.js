@@ -1,3 +1,10 @@
+const resetBtn = document.querySelector(".reset-btn"); //Attach resetGrid function to button
+resetBtn.addEventListener("click", resetGrid);
+
+const slider = document.querySelector("#slider-range");
+const output = document.querySelector("#grid-size");
+output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
+
 //Function to draw grid size based on input
 function drawGrid(num) {
     const drawSection = document.querySelector(".draw-section");
@@ -7,11 +14,11 @@ function drawGrid(num) {
         drawSection.appendChild(gridItem);
         gridItem.style.cssText = `border: 1px solid lightgrey; flex-basis: ${100 / num}%;`;
     }
-    colorPicker();
+    colorPick();
 }
 
 //Pick pen color from pop up
-function colorPicker() {
+function colorPick() {
     const penColor = document.querySelectorAll(".grid-item");
     const colorChoice = document.querySelector("#pen-color");
     let isDrawing = false;
@@ -35,23 +42,13 @@ function colorPicker() {
     })
 }
 
-//Attach resetGrid function to button
-const resetBtn = document.querySelector(".reset-btn");
-resetBtn.addEventListener("click", resetGrid);
-
 //Reset the grid to default background color
 function resetGrid() {
     const reset = document.querySelectorAll(".grid-item");
     reset.forEach((reset)=> {
-        reset.style.backgroundColor = "azure";
+        reset.style.backgroundColor = "";
     })
 }
-
-const slider = document.querySelector("#slider-range");
-const output = document.querySelector("#grid-size");
-
-output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
-
 
 //Applies new grid size and removes old one whenever slider moves
 slider.addEventListener("input", ()=> {
