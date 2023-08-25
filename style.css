@@ -11,32 +11,46 @@ body {
     background-image: linear-gradient(rgb(123, 123, 246), lightblue);
 }
 
-h1 {
-    text-align: center;
+.top-pad {
+    margin-top: 30px;
 }
 
-.container {
-    padding: 10px 30px 10px 30px;
-    display: flex;
-    justify-content: center;
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    color: azure;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: grey;
+}
+
+.etch-a-sketch {
+    padding: 20px 30px 20px 30px;
     width: 900px;
     margin: 0 auto;
-    background-color: rgb(213, 19, 19);
     background-image: radial-gradient(rgb(255, 53, 53), rgb(178, 21, 21));
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 .control-section {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color:azure;
+    padding: 10px;
     border-radius: 100px;
     margin-right: 20px;
+    border: 10px solid grey;
+    background-color: lightgray;
+    background-image: radial-gradient(azure, lightgray);
 }
 
 .draw-section {
@@ -44,7 +58,13 @@ h1 {
     width: 500px;
     height: 500px;
     flex-wrap: wrap;
-    background-color: azure;
+    background-color:aliceblue;
+    border: 10px solid grey;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .reset-container {
@@ -53,17 +73,41 @@ h1 {
 }
 
 button {
-    padding: 10px 30px;
+    padding: 10px 20px;
     font-size: x-large;
-    border-radius: 20px;
-    border: 0px;
-    margin: 0 10px;
+    border-radius: 11px;
+    border: 3px solid grey;
+    margin: 0 3px;
+}
+
+button:hover {
+    background-color: grey;
+    transition: 1s;
+    color: azure;
 }
 
 .slider-container {
+    border: 3px solid grey;
+    padding: 10px;
+    border-radius: 11px;
     text-align: center;
+    background-color: azure;
 }
 
-/* .grid-item:hover {
-    background-color: #333;
-} */
+.grid-item:hover {
+    cursor: crosshair;
+}
+
+.pen-container {
+    border: 3px solid grey;
+    padding: 10px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: azure;
+}
+
+#pen-color:hover {
+    cursor: pointer;
+}
