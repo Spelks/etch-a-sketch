@@ -18,11 +18,10 @@ body {
 h1 {
     font-size: 3rem;
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Satisfy', cursive;
     font-style: italic;
     color: azure;
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: grey;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .etch-a-sketch {
