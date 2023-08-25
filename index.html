@@ -9,25 +9,29 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
-    <h1>Etch-a-Sketch</h1>
-    <section class="container">
+    <div class="top-pad">
+    <section class="etch-a-sketch">
+        <h1>Etch-a-Sketch</h1>
+        <section class="container">
 
-        <div class="control-section">
-            <div class="pen-container">
-                <label for="body">Pen Color:</label>
-                <input type="color" id="pen-color" name="pen-color" value="#ffffff" />
+            <div class="control-section">
+                <div class="pen-container">
+                    <label for="body">Pen Color:</label>
+                    <input type="color" id="pen-color" name="pen-color" value="#ffffff" />
+                </div>
+                <div class="slider-container">
+                    <p>Grid Size</p>
+                    <input type="range" min="4" max="64" value="25" class="slider" id="slider-range">
+                    <p><span id="grid-size"></span></p>
+                </div>
+                <div class="reset-container">
+                    <button class="reset-btn">Clear</button>
+                </div>
             </div>
-            <div class="slider-container">
-                <input type="range" min="1" max="64" value="16" class="slider" id="slider-range">
-                <p><span id="grid-size"></span></p>
-            </div>
-            <div class="reset-container">
-                <button class="reset-btn">Clear</button>
-            </div>
-        </div>
+            <div class="draw-section"></div>
 
-        <div class="draw-section"></div>
-
+        </section>
     </section>
+    </div>
 </body>
 </html>
