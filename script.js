@@ -5,6 +5,9 @@ const slider = document.querySelector("#slider-range");
 const output = document.querySelector("#grid-size");
 output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
 
+const EraserBtn = document.querySelector(".eraser-btn");
+let isErasing = false;
+
 //Function to draw grid size based on input
 function drawGrid(num) {
     const drawSection = document.querySelector(".draw-section");
@@ -36,7 +39,11 @@ function colorPick() {
     penColor.forEach((penColor) => {
         penColor.addEventListener("pointermove", ()=> {
             if (isDrawing === true) {
-                penColor.style.backgroundColor = colorChoice.value;
+                if (isErasing === true) {
+                    penColor.style.backgroundColor = "";
+                } else {
+                    penColor.style.backgroundColor = colorChoice.value;
+                }
             }
         })
     })
@@ -66,3 +73,25 @@ function removeGrid() {
 
 //Set the initial grid
 drawGrid(parseInt(slider.value));
+
+function eraserActive() {
+    isErasing = true;
+    const drawSection = document.querySelector('.draw-section');
+    drawSection.classList.add("eraser-mode");
+}
+
+function eraserDeactive() {
+    isErasing = false;
+    const drawSection = document.querySelector('.draw-section');
+    drawSection.classList.remove("eraser-mode");
+}
+
+EraserBtn.addEventListener("click", ()=> {
+    if (!isErasing) {
+        eraserActive()
+        EraserBtn.classList.add("active");
+    } else {
+        eraserDeactive()
+        EraserBtn.classList.remove("active");
+    }
+})
