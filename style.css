@@ -31,6 +31,7 @@ h1 {
     background-image: radial-gradient(rgb(255, 53, 53), rgb(178, 21, 21));
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: 10px solid red;
 }
 
 .container {
@@ -47,9 +48,10 @@ h1 {
     padding: 10px;
     border-radius: 100px;
     margin-right: 20px;
-    border: 10px solid grey;
+    border: 10px solid rgb(168, 18, 18);
     background-color: lightgray;
     background-image: radial-gradient(azure, lightgray);
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .draw-section {
@@ -58,12 +60,14 @@ h1 {
     height: 500px;
     flex-wrap: wrap;
     background-color:aliceblue;
-    border: 10px solid grey;
+    border: 10px solid rgb(168, 18, 18);
     -webkit-user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+    border-radius: 11px;
 }
 
 .reset-container {
@@ -77,6 +81,7 @@ button {
     border-radius: 11px;
     border: 3px solid grey;
     margin: 0 3px;
+    cursor: pointer;
 }
 
 button:hover {
@@ -93,9 +98,9 @@ button:hover {
     background-color: azure;
 }
 
-.grid-item:hover {
+/* .grid-item:hover {
     cursor: crosshair;
-}
+} */
 
 .pen-container {
     border: 3px solid grey;
@@ -109,4 +114,17 @@ button:hover {
 
 #pen-color:hover {
     cursor: pointer;
+}
+
+.eraser-btn.active {
+    background-color: grey;
+    color: azure;
+}
+
+.draw-section {
+    cursor: crosshair;
+}
+
+.draw-section.eraser-mode {
+    cursor: not-allowed;
 }
