@@ -126,5 +126,5 @@ button:hover {
 }
 
 .draw-section.eraser-mode {
-    cursor: not-allowed;
+    cursor: url("eraser-icon.png"), auto;
 }
