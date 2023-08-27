@@ -1,12 +1,29 @@
-const resetBtn = document.querySelector(".reset-btn"); //Attach resetGrid function to button
-resetBtn.addEventListener("click", resetGrid);
-
+const resetBtn = document.querySelector(".reset-btn");
 const slider = document.querySelector("#slider-range");
 const output = document.querySelector("#grid-size");
+const EraserBtn = document.querySelector(".eraser-btn");
+
+resetBtn.addEventListener("click", resetGrid); //Clears Grid via resetGrid function
+
+EraserBtn.addEventListener("click", ()=> { //
+    if (!isErasing) {
+        eraserActive()
+        EraserBtn.classList.add("active");
+    } else {
+        eraserDeactive()
+        EraserBtn.classList.remove("active");
+    }
+});
+
+slider.addEventListener("input", ()=> { //Applies new grid size and removes old one whenever slider moves
+    const gridSize = parseInt(slider.value);
+    output.innerText = `${slider.value} x ${slider.value}`;
+    removeGrid()
+    drawGrid(gridSize);
+});
 output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
 
-const EraserBtn = document.querySelector(".eraser-btn");
-let isErasing = false;
+let isErasing = false; //Set default status of Eraser button
 
 //Function to draw grid size based on input
 function drawGrid(num) {
@@ -38,13 +55,21 @@ function colorPick() {
 
     penColor.forEach((penColor) => {
         penColor.addEventListener("pointermove", ()=> {
-            if (isDrawing === true) {
-                if (isErasing === true) {
-                    penColor.style.backgroundColor = "";
-                } else {
-                    penColor.style.backgroundColor = colorChoice.value;
-                }
-            }
+            if (isDrawing === false) {
+                return;
+              }
+              if (isErasing === true) {
+                penColor.style.backgroundColor = "";
+              } else {
+                penColor.style.backgroundColor = colorChoice.value;
+              }
+            // if (isDrawing === true) {
+            //     if (isErasing === true) {
+            //         penColor.style.backgroundColor = "";
+            //     } else {
+            //         penColor.style.backgroundColor = colorChoice.value;
+            //     }
+            // }
         })
     })
 }
@@ -57,22 +82,11 @@ function resetGrid() {
     })
 }
 
-//Applies new grid size and removes old one whenever slider moves
-slider.addEventListener("input", ()=> {
-    const gridSize = parseInt(slider.value);
-    output.innerText = `${slider.value} x ${slider.value}`;
-    removeGrid()
-    drawGrid(gridSize);
-})
-
 //Strips the grid from the container when selecting new dimensions
 function removeGrid() {
     const removeSection = document.querySelector(".draw-section");
     removeSection.textContent = "";
 }
-
-//Set the initial grid
-drawGrid(parseInt(slider.value));
 
 function eraserActive() {
     isErasing = true;
@@ -86,12 +100,7 @@ function eraserDeactive() {
     drawSection.classList.remove("eraser-mode");
 }
 
-EraserBtn.addEventListener("click", ()=> {
-    if (!isErasing) {
-        eraserActive()
-        EraserBtn.classList.add("active");
-    } else {
-        eraserDeactive()
-        EraserBtn.classList.remove("active");
-    }
-})
+//Set the initial grid
+drawGrid(parseInt(slider.value));
+
+
