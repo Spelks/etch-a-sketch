@@ -1,38 +1,35 @@
 const resetBtn = document.querySelector(".reset-btn");
 const slider = document.querySelector("#slider-range");
 const output = document.querySelector("#grid-size");
-const EraserBtn = document.querySelector(".eraser-btn");
+const eraserBtn = document.querySelector(".eraser-btn");
+const drawSection = document.querySelector(".draw-section");
+const colorChoice = document.querySelector("#pen-color");
 
-resetBtn.addEventListener("click", resetGrid); //Clears Grid via resetGrid function
+resetBtn.addEventListener("click", resetGrid);
+slider.addEventListener("input", handleSliderInput);
+eraserBtn.addEventListener("click", toggleEraser);
 
-EraserBtn.addEventListener("click", ()=> { //
-    if (!isErasing) {
-        eraserActive()
-        EraserBtn.classList.add("active");
-    } else {
-        eraserDeactive()
-        EraserBtn.classList.remove("active");
-    }
-});
+function toggleEraser() {
+    isErasing = !isErasing;
+    drawSection.classList.toggle("eraser-mode", isErasing);
+    eraserBtn.classList.toggle("active", isErasing);
+}
 
-slider.addEventListener("input", ()=> { //Applies new grid size and removes old one whenever slider moves
+//Applies new grid size and removes old one whenever slider moves
+function handleSliderInput() {
     const gridSize = parseInt(slider.value);
     output.innerText = `${slider.value} x ${slider.value}`;
     removeGrid()
     drawGrid(gridSize);
-});
-output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
-
-let isErasing = false; //Set default status of Eraser button
+}
 
 //Function to draw grid size based on input
 function drawGrid(num) {
-    const drawSection = document.querySelector(".draw-section");
     for (let i = 0; i < num * num; i++) {
-        const gridItem = document.createElement("div");
-        gridItem.classList.add("grid-item");
-        drawSection.appendChild(gridItem);
-        gridItem.style.cssText = `border: 1px solid lightgrey; flex-basis: ${100 / num}%;`;
+        const divItem = document.createElement("div");
+        divItem.classList.add("grid-item");
+        drawSection.appendChild(divItem);
+        divItem.style.cssText = `border: 1px solid lightgrey; flex-basis: ${100 / num}%;`;
     }
     colorPick();
 }
@@ -40,37 +37,21 @@ function drawGrid(num) {
 //Pick pen color from pop up
 function colorPick() {
     const penColor = document.querySelectorAll(".grid-item");
-    const colorChoice = document.querySelector("#pen-color");
-    let isDrawing = false;
-
-    penColor.forEach((penColor) => {
-        penColor.addEventListener("pointerdown", ()=> {
+    penColor.forEach((item) => {
+        item.addEventListener("pointerdown", ()=> {
             isDrawing = true;
         })
+        item.addEventListener("pointermove", ()=> {
+            if (isDrawing === false) return;
+            if (isErasing) {
+                item.style.backgroundColor = "";
+              } else {
+                item.style.backgroundColor = colorChoice.value;
+              }
+        })
     })
-
     document.addEventListener("pointerup", ()=> {
         isDrawing = false;
-    })
-
-    penColor.forEach((penColor) => {
-        penColor.addEventListener("pointermove", ()=> {
-            if (isDrawing === false) {
-                return;
-              }
-              if (isErasing === true) {
-                penColor.style.backgroundColor = "";
-              } else {
-                penColor.style.backgroundColor = colorChoice.value;
-              }
-            // if (isDrawing === true) {
-            //     if (isErasing === true) {
-            //         penColor.style.backgroundColor = "";
-            //     } else {
-            //         penColor.style.backgroundColor = colorChoice.value;
-            //     }
-            // }
-        })
     })
 }
 
@@ -84,23 +65,13 @@ function resetGrid() {
 
 //Strips the grid from the container when selecting new dimensions
 function removeGrid() {
-    const removeSection = document.querySelector(".draw-section");
-    removeSection.textContent = "";
+    drawSection.textContent = "";
 }
 
-function eraserActive() {
-    isErasing = true;
-    const drawSection = document.querySelector('.draw-section');
-    drawSection.classList.add("eraser-mode");
-}
+let isErasing = false; //Set default status of Eraser button
+let isDrawing = false; //Prevents drawing until 'pointerdown' eventListener fires
 
-function eraserDeactive() {
-    isErasing = false;
-    const drawSection = document.querySelector('.draw-section');
-    drawSection.classList.remove("eraser-mode");
-}
-
-//Set the initial grid
-drawGrid(parseInt(slider.value));
+output.innerText = `${slider.value} x ${slider.value}`; // Default slider value
+drawGrid(parseInt(slider.value)); //Set the initial grid
 
 
