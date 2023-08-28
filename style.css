@@ -42,7 +42,7 @@ h1 {
 .control-section {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     justify-content: center;
     padding: 10px;
@@ -84,6 +84,11 @@ button {
     cursor: pointer;
 }
 
+.grid-btn {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
 button:hover {
     background-color: grey;
     transition: 1s;
@@ -123,4 +128,8 @@ button:hover {
 
 .draw-section.eraser-mode {
     cursor: url("eraser-icon.png"), auto;
+}
+
+.grid-toggle {
+    border: 1px solid lightgrey;
 }
