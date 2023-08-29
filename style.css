@@ -42,7 +42,7 @@ h1 {
 .control-section {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
     padding: 10px;
@@ -82,6 +82,11 @@ button {
     border: 3px solid grey;
     margin: 0 3px;
     cursor: pointer;
+}
+
+.colorfest-btn {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 .grid-btn {
@@ -133,3 +138,49 @@ button:hover {
 .grid-toggle {
     border: 1px solid lightgrey;
 }
+
+.colorfest-btn {
+    transition: color 0.3s ease;
+}
+
+.colorfest-btn.active {
+    animation: glowAnimation 3s infinite, fontColorAnimation 3s infinite;
+}
+
+@keyframes glowAnimation {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+    25% {
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 0, 255, 0.5);
+    }
+    75% {
+        box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    }
+}
+
+@keyframes fontColorAnimation {
+    0% {
+        color: #333; /* Initial font color */
+    }
+    25% {
+        color: red; /* Font color during first step of glowAnimation */
+    }
+    50% {
+        color: green; /* Font color during second step of glowAnimation */
+    }
+    75% {
+        color: blue; /* Font color during third step of glowAnimation */
+    }
+    100% {
+        color: purple; /* Font color during last step of glowAnimation */
+    }
+}
+
+
